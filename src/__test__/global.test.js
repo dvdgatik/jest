@@ -56,3 +56,42 @@ test('Probar un callback', ()=>{
 		expect(str).toBe('aloH');
 	});
 });
+
+
+// Promesas
+
+const reverseString2 = str => {
+	return new Promise((resolve, reject) => {
+		if(!str) {
+			reject(Error('error'));
+		}
+		resolve(str.split('').reverse().join(''));
+	});
+};
+
+test('Probar una promesa', () => {
+	return reverseString2('Hola')
+	.then(string => {
+		expect(string).toBe('aloH');
+	});
+
+});
+
+//Async y Await
+
+test('Probar async/await', async () => {
+	const string = await reverseString2('hola');
+
+	expect(string).toBe('aloh');
+});
+
+// Trabajar con funciones que se van a ejecutar Antes de cada Prueba o Despues de cada Prueba
+//Despues de cada prueba
+//
+afterEach(() => console.log('Despues de cada prueba'));
+afterAll(() => console.log('Despues de todas las pruebas'));
+
+beforeEach(() => console.log('Antes de cada prueba'));
+beforeAll(() => console.log('Antes de todas las pruebas'));
+
+
